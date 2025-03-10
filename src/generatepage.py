@@ -31,7 +31,9 @@ def write_file(fn, content):
     with open(fn, 'w') as o:
         o.write(content)
 
-def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, basepath=''):
+    if basepath == '':
+        basepath = '/'
     mds = glob.glob(f'{dir_path_content}**/*.md', recursive=True)
 
     with open(template_path, 'r') as s:
@@ -47,5 +49,5 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
         source_html = markdown_to_html_node(source).to_html()
         title = extract_title(source)
 
-        out = template.replace("{{ Title }}", title).replace("{{ Content }}", source_html)
+        out = template.replace("{{ Title }}", title).replace("{{ Content }}", source_html).replace('href="/', f'href="{basepath}').replace('src="/', f'src="{basepath}')
         write_file(path, out)
