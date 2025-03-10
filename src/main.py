@@ -10,8 +10,8 @@ basepath = ''
 if sys.argv[1]:
     basepath = sys.argv[1]
 
-dir_path_static = f"{basepath}/static"
-dir_path_docs = f"{basepath}/docs"
+dir_path_static = "static"
+dir_path_docs = "docs"
 
 def main():
     print("Deleting docs directory...")
@@ -20,7 +20,7 @@ def main():
 
     print("Copying static files to docs directory...")
     copy_files_recursive(dir_path_static, dir_path_docs)
-    generate_pages_recursive(f'{basepath}/content/', 'template.html', 'docs/', basepath=basepath)
+    generate_pages_recursive(f'content/', 'template.html', 'docs/', basepath=basepath)
 
 
 main()
