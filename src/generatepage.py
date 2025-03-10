@@ -49,5 +49,5 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, bas
         source_html = markdown_to_html_node(source).to_html()
         title = extract_title(source)
 
-        out = template.replace("{{ Title }}", title).replace("{{ Content }}", source_html).replace('href="/', f'href="{basepath}').replace('src="/', f'src="{basepath}')
+        out = template.replace("{{ Title }}", title).replace("{{ Content }}", source_html).replace('href="/', f'href="{basepath}/').replace('src="/', f'src="{basepath}/')
         write_file(path, out)
